@@ -1,0 +1,270 @@
+2025-01-18 13:29:06,938 - INFO - === Starting migration from rohmat@atonergi.com to dm01@rejaton.com ===
+2025-01-18 13:29:06,940 - INFO - Starting download for rohmat@atonergi.com
+2025-01-18 13:29:09,729 - INFO - Downloading Copy of 30-09-2024 STATUS WA.jpg-info.json: 100%
+2025-01-18 13:29:10,716 - INFO - Downloading Bukti upload FB 30-09-24.png-info.json: 100%
+2025-01-18 13:29:11,953 - INFO - Downloading Bukti upload FB 30-09-24.png: 100%
+2025-01-18 13:29:13,326 - INFO - Downloading Copy of 30-09-2024 STATUS WA.jpg: 100%
+2025-01-18 13:29:17,770 - INFO - Downloading Project-NGGOLOMBAY_Bp.-Willyam_Bajawa_67m_31cbm.pdf: 100%
+2025-01-18 13:29:20,624 - INFO - Downloading Project-Tedakisa_Bp.-Willyam_Bajawa_102m_32cbm_.pdf: 100%
+2025-01-18 13:29:21,860 - INFO - Downloading Project-BIDOA_Bp.-Willyam_Bajawa_100m_33cbm_5,.json: 100%
+2025-01-18 13:29:24,012 - INFO - Downloading Project-WAEKOKAK_Bp.-Willyam_Bajawa_102m_34cbm_.pdf: 100%
+2025-01-18 13:29:25,162 - INFO - Downloading Project-Wajo-Sulawesi-Selatan_Bp.-Andi-Baharud.json: 100%
+2025-01-18 13:29:26,090 - INFO - Downloading Project-PAGOMOGO_Bp.-Willyam_Bajawa_105m_33cbm.json: 100%
+2025-01-18 13:29:27,330 - INFO - Downloading Project-KOTAKEO-I_Bp.-Willyam_Bajawa_105m_37cb.json: 100%
+2025-01-18 13:29:29,041 - INFO - Downloading Project-LAPE_Bp.-Willyam_Bajawa_110m_41cbm_8,40.pdf: 100%
+2025-01-18 13:29:29,992 - INFO - Downloading Project-NAGEOGA_Bp.-Willyam_Bajawa_92m_34cbm_5.json: 100%
+2025-01-18 13:29:31,369 - INFO - Downloading Project-MBAY-I_Bp.-Willyam_Bajawa_75m_45cbm_6,.json: 100%
+2025-01-18 13:29:33,025 - INFO - Downloading Project-DHEREISA_Bp.-Willyam_Bajawa_230m_73cbm_.pdf: 100%
+2025-01-18 13:29:35,115 - INFO - Downloading Project-Tedakisa_Bp.-Willyam_Bajawa_102m_32cbm.json: 100%
+2025-01-18 13:29:36,432 - INFO - Downloading Project-NGGOLONIO_Bp.-Willyam_Bajawa_102m_68cb.json: 100%
+2025-01-18 13:29:37,545 - INFO - Downloading Project-LAPE_Bp.-Willyam_Bajawa_110m_41cbm_8,4.json: 100%
+2025-01-18 13:29:39,026 - INFO - Downloading Project-PAGOMOGO_Bp.-Willyam_Bajawa_105m_30cbm_.pdf: 100%
+2025-01-18 13:29:40,980 - INFO - Downloading Project-WOLOWESA-TIMUR_Bp.-Willyam_Bajawa_60m_2.pdf: 100%
+2025-01-18 13:29:43,121 - INFO - Downloading Project-MBAY-I_Bp.-Willyam_Bajawa_75m_45cbm_6,0.pdf: 100%
+2025-01-18 13:29:44,513 - INFO - Downloading Project-WOLOWESA_Bp.-Willyam_Bajawa_90m_99cbm_1.pdf: 100%
+2025-01-18 13:29:46,466 - INFO - Downloading PROJECT-GERODHERE_Bp.-Willyam_Bajawa_90m_94cbm_.pdf: 100%
+2025-01-18 13:29:48,395 - INFO - Downloading Project-BIDOA_Bp.-Willyam_Bajawa_100m_33cbm_5,6.pdf: 100%
+2025-01-18 13:29:50,967 - INFO - Downloading Project-NAGEOGA_Bp.-Willyam_Bajawa_92m_34cbm_5,.pdf: 100%
+2025-01-18 13:29:52,333 - INFO - Downloading Project-NGGOLONIO_Bp.-Willyam_Bajawa_102m_68cbm.pdf: 100%
+2025-01-18 13:29:53,651 - INFO - Downloading Project-PAGOMOGO_Bp.-Willyam_Bajawa_105m_30cbm.json: 100%
+2025-01-18 13:29:54,649 - INFO - Downloading PROJECT-GERODHERE_Bp.-Willyam_Bajawa_90m_94cbm.json: 100%
+2025-01-18 13:29:56,043 - INFO - Downloading Project-Wajo-Sulawesi-Selatan_Bp.-Andi-Baharudd.pdf: 100%
+2025-01-18 13:29:57,824 - INFO - Downloading Project-MBAY I_Bp.-Willyam_Bajawa_75m_44cbm_7,.json: 100%
+2025-01-18 13:29:59,012 - INFO - Downloading Project-DHAWE_Bp.-Willyam_Bajawa_125m_15cbm_4,.json: 100%
+2025-01-18 13:30:00,645 - INFO - Downloading Project-PAGOMOGO_Bp.-Willyam_Bajawa_105m_33cbm_.pdf: 100%
+2025-01-18 13:30:01,612 - INFO - Downloading Project-WOLOWESA-TIMUR_Bp.-Willyam_Bajawa_60m_.json: 100%
+2025-01-18 13:30:03,518 - INFO - Downloading Project-DHAWE_Bp.-Willyam_Bajawa_125m_15cbm_4,0.pdf: 100%
+2025-01-18 13:30:04,866 - INFO - Downloading Project-GERODHERE_Bp.-Willyam_Bajawa_90m_135cb.json: 100%
+2025-01-18 13:30:06,106 - INFO - Downloading Project-DHEREISA_Bp.-Willyam_Bajawa_230m_73cbm.json: 100%
+2025-01-18 13:30:07,802 - INFO - Downloading Project-MBAY I_Bp.-Willyam_Bajawa_75m_44cbm_7,2.pdf: 100%
+2025-01-18 13:30:08,764 - INFO - Downloading Project-WAEKOKAK_Bp.-Willyam_Bajawa_102m_34cbm.json: 100%
+2025-01-18 13:30:10,627 - INFO - Downloading Project-KOTAKEO-I_Bp.-Willyam_Bajawa_105m_37cbm.pdf: 100%
+2025-01-18 13:30:12,288 - INFO - Downloading Project-GERODHERE_Bp.-Willyam_Bajawa_90m_135cbm.pdf: 100%
+2025-01-18 13:30:13,143 - INFO - Downloading Project-WOLOWESA_Bp.-Willyam_Bajawa_90m_99cbm_.json: 100%
+2025-01-18 13:30:14,036 - INFO - Downloading Project-NGGOLOMBAY_Bp.-Willyam_Bajawa_67m_31cb.json: 100%
+2025-01-18 13:30:15,523 - INFO - Downloading atonergi.png-info.json: 100%
+2025-01-18 13:30:16,717 - INFO - Downloading lorentz_logo.gif-info.json: 100%
+2025-01-18 13:30:17,665 - INFO - Downloading atonergi.png: 100%
+2025-01-18 13:30:18,620 - INFO - Downloading lorentz_logo.gif: 100%
+2025-01-18 13:30:19,844 - INFO - Downloading customer_db.mdb-info.json: 100%
+2025-01-18 13:30:21,592 - INFO - Downloading customer_db.mdb: 100%
+2025-01-18 13:30:23,529 - INFO - Downloading LORENTZ_PS2-1800_hre-14h_ pi_en_ver310240.pdf-.json: 100%
+2025-01-18 13:30:25,055 - INFO - Downloading LORENTZ_PS2-1800_hre-14h_ pi_en_ver310240.pdf: 100%
+2025-01-18 13:30:26,101 - INFO - Downloading Pump systems-info.json: 100%
+2025-01-18 13:30:27,644 - INFO - Downloading Datasheets-info.json: 100%
+2025-01-18 13:30:28,905 - INFO - Downloading Database-info.json: 100%
+2025-01-18 13:30:29,908 - INFO - Downloading Reports-info.json: 100%
+2025-01-18 13:30:30,970 - INFO - Downloading Logos-info.json: 100%
+2025-01-18 13:30:32,004 - INFO - Downloading Youcam-info.json: 100%
+2025-01-18 13:30:32,990 - INFO - Downloading LORENTZ COMPASS-info.json: 100%
+2025-01-18 13:30:34,704 - INFO - Downloading Documents-info.json: 100%
+2025-01-18 13:30:37,157 - INFO - Downloading Google Sheets.lnk: 100%
+2025-01-18 13:30:38,018 - INFO - Downloading Word.lnk: 100%
+2025-01-18 13:30:39,219 - INFO - Downloading omahkayu. - Chrome.lnk: 100%
+2025-01-18 13:30:40,440 - INFO - Downloading Google Slides.lnk: 100%
+2025-01-18 13:30:41,784 - INFO - Downloading omahkayu. - Chrome.lnk-info.json: 100%
+2025-01-18 13:30:43,013 - INFO - Downloading Excel.lnk-info.json: 100%
+2025-01-18 13:30:44,233 - INFO - Downloading Google Docs.lnk: 100%
+2025-01-18 13:30:45,546 - INFO - Downloading Word.lnk-info.json: 100%
+2025-01-18 13:30:46,426 - INFO - Downloading Google Slides.lnk-info.json: 100%
+2025-01-18 13:30:47,523 - INFO - Downloading Excel.lnk: 100%
+2025-01-18 13:30:48,719 - INFO - Downloading Google Drive.lnk-info.json: 100%
+2025-01-18 13:30:49,433 - INFO - Downloading COMPASS.appref-ms.mp3: 100%
+2025-01-18 13:30:50,334 - INFO - Downloading Google Docs.lnk-info.json: 100%
+2025-01-18 13:30:51,163 - INFO - Downloading Google Drive.lnk: 100%
+2025-01-18 13:30:52,525 - INFO - Downloading PowerPoint.lnk-info.json: 100%
+2025-01-18 13:30:53,742 - INFO - Downloading Zoom Workplace.lnk: 100%
+2025-01-18 13:30:54,975 - INFO - Downloading COMPASS.appref-ms-info.json: 100%
+2025-01-18 13:30:55,783 - INFO - Downloading Google Sheets.lnk-info.json: 100%
+2025-01-18 13:30:56,940 - INFO - Downloading Zoom Workplace.lnk-info.json: 100%
+2025-01-18 13:30:57,844 - INFO - Downloading PowerPoint.lnk: 100%
+2025-01-18 13:30:59,447 - INFO - Downloading Desktop-info.json: 100%
+2025-01-18 13:31:02,005 - INFO - Downloading Alex Nias 12 Nov.jpg: 100%
+2025-01-18 13:31:03,198 - INFO - Downloading Jalil 13 nov.jpg-info.json: 100%
+2025-01-18 13:31:04,207 - INFO - Downloading 00283-Project-Wonosobo_Bp.-Habib_Wonosobo_150m.json: 100%
+2025-01-18 13:31:05,306 - INFO - Downloading 00249-SWP-P-PS2-1800 8-7 SET-1.200 WP (CUST PR.json: 100%
+2025-01-18 13:31:06,399 - INFO - Downloading Novi 26 nov.jpg-info.json: 100%
+2025-01-18 13:31:07,756 - INFO - Downloading bukti call miftah aceh -28 okt.jpg: 100%
+2025-01-18 13:31:08,898 - INFO - Downloading 00474-9-SWP-P-PS2-4000 3-32 SET-(TANPA SOLAR P(1).json: 100%
+2025-01-18 13:31:10,213 - INFO - Downloading 00268-Project-Waimanu_Bp.-Frets_Waikabubak_35m_.pdf: 100%
+2025-01-18 13:31:11,323 - INFO - Downloading LUTFI 05 DES.jpg-info.json: 100%
+2025-01-18 13:31:12,623 - INFO - Downloading bukti call fauzi amrillah 04 nov.jpg-info.json: 100%
+2025-01-18 13:31:14,818 - INFO - Downloading 00399-Muaro-Jambi---Jambi_Bpk.-Asmuri_Jambi_40m.pdf: 100%
+2025-01-18 13:31:15,937 - INFO - Downloading status wa 29 okt.jpg-info.json: 100%
+2025-01-18 13:31:17,403 - INFO - Downloading ANDRIUS PRAING 09 DES.jpg: 100%
+2025-01-18 13:31:18,942 - INFO - Downloading 00246-1-SWP-P-PS1-200 HR-07-400 WP (CUST PRICE-.pdf: 100%
+2025-01-18 13:31:19,857 - INFO - Downloading Call Agus Ghozali 08 Nov.jpg-info.json: 100%
+2025-01-18 13:31:20,722 - INFO - Downloading bukti calk dedi 1 nov.jpg-info.json: 100%
+2025-01-18 13:31:21,956 - INFO - Downloading PENAWARAN HARGA OGI 05 DES.jpg: 100%
+2025-01-18 13:31:23,272 - INFO - Downloading Status Wa 20 nov.jpg: 100%
+2025-01-18 13:31:25,516 - INFO - Downloading 00474-Project-Desa-Halerman---Alor,-NTT_Guntur-.pdf: 100%
+2025-01-18 13:31:27,916 - INFO - Downloading 00395-1-SWP-P-PS2-200 3-9 SET-400 WP (PRICELIS.xlsx: 100%
+2025-01-18 13:31:29,368 - INFO - Downloading 00465-Desa-Kuta-Dome---Sumatera-Utara_Hendri-Li.pdf: 100%
+2025-01-18 13:31:30,719 - INFO - Downloading Jalil 15 nov.jpg: 100%
+2025-01-18 13:31:31,519 - INFO - Downloading 00496-Project-Yalimo--Papua-Pegunungan_Wasarea.json: 100%
+2025-01-18 13:31:32,455 - INFO - Downloading bukti call Bpk Eman -22 okt.jpg: 100%
+2025-01-18 13:31:34,219 - INFO - Downloading Bukti Call -Luthfi Aditama -23 okt.jpg-info.json: 100%
+2025-01-18 13:31:35,108 - INFO - Downloading 00397-Majene-Sulawesi-Barat_Bpk.-Sarkasi,-ST_M.json: 100%
+2025-01-18 13:31:36,306 - INFO - Downloading SUHAIB 06 DES .jpg: 100%
+2025-01-18 13:31:37,113 - INFO - Downloading STATUS WA 28 NOV.jpg-info.json: 100%
+2025-01-18 13:31:37,977 - INFO - Downloading STATUS 10 DES.jpg-info.json: 100%
+2025-01-18 13:31:38,944 - INFO - Downloading Roby 22 nov.jpg-info.json: 100%
+2025-01-18 13:31:39,817 - INFO - Downloading 00270-SWP-P-PS2 1800 8-7 SET-1.800 WP (PRICELI.json: 100%
+2025-01-18 13:31:40,841 - INFO - Downloading Asir 11 Nov fix.jpg-info.json: 100%
+2025-01-18 13:31:43,952 - INFO - Downloading 00029-JASA-SURVEY PLTS (CUST PRICE-S)-06-24-AT.xlsx: 100%
+2025-01-18 13:31:45,460 - INFO - Downloading 00496-3-SWP-P-PSk3-7 12-15 SET - 19.800 WP (PRI.pdf: 100%
+2025-01-18 13:31:46,307 - INFO - Downloading SUMARDI 11 DES.jpg-info.json: 100%
+2025-01-18 13:31:49,431 - INFO - Downloading 00268-SWP-P-PS2 1800 8-7 SET-1.800 WP (PRICELI.xlsx: 100%
+2025-01-18 13:31:51,499 - INFO - Downloading 00254-1-SWP-P-S1-200 HR-07-400 WP (PRICELIST-S).pdf: 100%
+2025-01-18 13:31:53,009 - INFO - Downloading STATUS WA 29 NOV.jpg: 100%
+2025-01-18 13:31:53,787 - INFO - Downloading NURDIN 12 DES.jpg-info.json: 100%
+2025-01-18 13:31:55,469 - INFO - Downloading 00249-Project-Desa-Amarasi-Kupang_Bp.-Willy_Kup.pdf: 100%
+2025-01-18 13:31:56,300 - INFO - Downloading Bukti call Konisas 29 okt.jpg-info.json: 100%
+2025-01-18 13:31:57,544 - INFO - Downloading JUPRI 16DES.jpg: 100%
+2025-01-18 13:31:59,090 - INFO - Downloading 00472-2-SWP-P-PS2-4000 8-15 SET-6000 WP (CUST P.pdf: 100%
+2025-01-18 13:32:00,015 - INFO - Downloading Vincent 18 nov.jpg: 100%
+2025-01-18 13:32:02,731 - INFO - Downloading 00486-Project-Desa-Ngadu-Bolu---Sumba-Tengah_Su.pdf: 100%
+2025-01-18 13:32:04,101 - INFO - Downloading 04-10-24 BUKTI PEMBUATAN PENAWARAN PAK SUKRISNO.png: 100%
+2025-01-18 13:32:05,285 - INFO - Downloading bukti call boby tegar 06 nov.jpg-info.json: 100%
+2025-01-18 13:32:06,205 - INFO - Downloading DABY 05 DES.jpg-info.json: 100%
+2025-01-18 13:32:07,360 - INFO - Downloading 00248-1-SWP-P-PS2 150 5-8 SET-600 WP (CUST PRI.json: 100%
+2025-01-18 13:32:08,782 - INFO - Downloading 0023-FORM CHECKLIST PERALATAN & PERLENGKAPAN-SU.pdf: 100%
+2025-01-18 13:32:10,004 - INFO - Downloading 00291-SWP-P-PS2-1800 1-25 SET-4.000 WP (PRICEL(1).json: 100%
+2025-01-18 13:32:11,455 - INFO - Downloading 11-10-24 BUKTI PEMBUATAN PENAWARAN JASA CLEANI.json: 100%
+2025-01-18 13:32:13,578 - INFO - Downloading 00261-1-SWP-P-PS2-4000 5-25 SET-8.925 WP (CUST.json: 100%
+2025-01-18 13:32:15,238 - INFO - Downloading 00291-SWP-P-PS2-1800 1-25 SET-4.000 WP (PRICELI.pdf: 100%
+2025-01-18 13:32:16,480 - INFO - Downloading bukti pembuatan penawaran BEHN MEYER-21 OKT.jpg: 100%
+2025-01-18 13:32:17,515 - INFO - Downloading 00474-2-SWP-P-PS2-4000 3-32 SET-(TANPA SOLAR P.json: 100%
+2025-01-18 13:32:18,455 - INFO - Downloading 00271-Project-Anapalu_Bp.-Frets_Waikabubak_68m.json: 100%
+2025-01-18 13:32:19,470 - INFO - Downloading 00424-1-OFG-11.000 WP-10 KWH-LITH (CUST PRICE-.json: 100%
+2025-01-18 13:32:20,368 - INFO - Downloading NOTULEN MEETING STANDARISASI SKP 09 OKT 2024.jpg: 100%
+2025-01-18 13:32:21,515 - INFO - Downloading bukti call bingkros pairie.jpg: 100%
+2025-01-18 13:32:22,402 - INFO - Downloading 00256-Project-Lumajang_Bp.-Harianto_Lumajang_1.json: 100%
+2025-01-18 13:32:23,506 - INFO - Downloading Bukti Call Dadang 30 okt.jpg-info.json: 100%
+2025-01-18 13:32:24,405 - INFO - Downloading 04-10-24 BUKTI PEMBUATAN PAK SARKASI- SULBAR.png: 100%
+2025-01-18 13:32:25,572 - INFO - Downloading 00463-1-SWP-P-PS2-4000 5-25 SET-7.200 WP (PRIC.json: 100%
+2025-01-18 13:32:26,459 - INFO - Downloading bukti call hadirin 05 nov.jpg: 100%
+2025-01-18 13:32:28,120 - INFO - Downloading 00473-Project-Desa-Halerman---Alor,-NTT_Guntur-.pdf: 100%
+2025-01-18 13:32:31,111 - INFO - Downloading 00424-1-OFG-11.000 WP-10 KWH-LITH (CUST PRICE-.xlsx: 100%
+2025-01-18 13:32:32,330 - INFO - Downloading 00422-OFG-5.500 WP-BATTERYLESS (CUST PRICE-V)-.json: 100%
+2025-01-18 13:32:33,919 - INFO - Downloading 00457-Project-Dili---Timor-Leste_Novi_Dili_82m_.pdf: 100%
+2025-01-18 13:32:35,019 - INFO - Downloading Jalil Namugur 12 nov.jpg-info.json: 100%
+2025-01-18 13:32:36,031 - INFO - Downloading STATUS WA 03 DES.jpg: 100%
+2025-01-18 13:32:37,259 - INFO - Downloading PENAWARAN HARGA YONGKY-09 DES.jpg: 100%
+2025-01-18 13:32:38,425 - INFO - Downloading Call adi malolo 08 nov.jpg-info.json: 100%
+2025-01-18 13:32:41,157 - INFO - Downloading 00197-ACC-AKSESORIS ON GRID 25 KWP (CUST PRICE.xlsx: 100%
+2025-01-18 13:32:42,159 - INFO - Downloading 00495-WASIOR_IBU JUMIATI_1.600Wp.pdf-info.json: 100%
+2025-01-18 13:32:43,223 - INFO - Downloading facebook 20 nov.jpg: 100%
+2025-01-18 13:32:44,282 - INFO - Downloading Call adi malolo 08 nov.jpg: 100%
+2025-01-18 13:32:45,379 - INFO - Downloading Muhajir 26 nov.jpg-info.json: 100%
+2025-01-18 13:32:47,071 - INFO - Downloading call yusuf pangandaran 07 nov.jpg: 100%
+2025-01-18 13:32:48,982 - INFO - Downloading 00295-SWP-P-PSk2-21 8-50-30.600 WP (PRICELIST-.xlsx: 100%
+2025-01-18 13:32:50,216 - INFO - Downloading 00293-SWP-P-PS2-4000 5-25 SET- 8.400 WP (PRICE(1).json: 100%
+2025-01-18 13:32:51,288 - INFO - Downloading 00424-3-OFG-11.000 WP-10 KWH-LITH (CUST PRICE-.json: 100%
+2025-01-18 13:32:52,301 - INFO - Downloading Ari waikabubak 07 nov.jpg: 100%
+2025-01-18 13:32:53,373 - INFO - Downloading 00407-OFG-3.300 WP-BATTERYLESS (CUST PRICE-V)-.json: 100%
+2025-01-18 13:32:54,837 - INFO - Downloading Kace waratmas 19 nov.jpg: 100%
+2025-01-18 13:32:55,980 - INFO - Downloading bukti call boby 01 nov.jpg: 100%
+2025-01-18 13:32:56,832 - INFO - Downloading Bukti Call Faisal nagan raya -28 okt.jpg: 100%
+2025-01-18 13:32:57,928 - INFO - Downloading Bukti Call Richardo 29 okt.jpg-info.json: 100%
+2025-01-18 13:32:59,505 - INFO - Downloading status wa 29 okt.jpg: 100%
+2025-01-18 13:33:00,382 - INFO - Downloading 0023-FORM CHECKLIST PERALATAN & PERLENGKAPAN-S.json: 100%
+2025-01-18 13:33:01,313 - INFO - Downloading Marthyn 18 nov.jpg: 100%
+2025-01-18 13:33:02,150 - INFO - Downloading Boby Junaidi 18 nov.jpg-info.json: 100%
+2025-01-18 13:33:03,399 - INFO - Downloading status wa 06 nov.jpg-info.json: 100%
+2025-01-18 13:33:04,576 - INFO - Downloading JUAN BIRINK 28 NOV.jpg: 100%
+2025-01-18 13:33:05,898 - INFO - Downloading Bone 25 nov.jpg-info.json: 100%
+2025-01-18 13:33:07,065 - INFO - Downloading SUHAIB 05 DES.jpg: 100%
+2025-01-18 13:33:08,208 - INFO - Downloading bukti  call boby 01 nov .jpg-info.json: 100%
+2025-01-18 13:33:10,200 - INFO - Downloading DOKUMENTASI CALL REPORT VIVI-info.json: 100%
+2025-01-18 13:33:11,713 - INFO - Downloading DOKUMENTASI CALL REPORT VIVI.xlsx: 100%
+2025-01-18 13:33:13,140 - INFO - Downloading 00193-1-ACC-PV DISCONNECT (CUST PRICE-V)-12-24(2).json: 100%
+2025-01-18 13:33:14,188 - INFO - Downloading 00473-SWP-P-PS2-4000 3-32 SET-4800 WP (PRICELI(2).json: 100%
+2025-01-18 13:33:15,018 - INFO - Downloading 00193-1-ACC-PV DISCONNECT (CUST PRICE-V)-12-24.json: 100%
+2025-01-18 13:33:16,595 - INFO - Downloading 00473-SWP-P-PS2-4000 3-32 SET-4800 WP (PRICELIS(2).pdf: 100%
+2025-01-18 13:33:19,954 - INFO - Downloading 00422-OFG-5.500 WP-BATTERYLESS (CUST PRICE-V)-.xlsx: 100%
+2025-01-18 13:33:20,924 - INFO - Downloading YACOBSON 3.jpg-info.json: 100%
+2025-01-18 13:33:22,204 - INFO - Downloading 00498-2-SWP-P-PS2-4000 5-25 SET- 6.000 WP (CUS.json: 100%
+2025-01-18 13:33:23,380 - INFO - Downloading 00498-SWP-P-PS2-4000 5-25 SET- 6.000 WP (PRICE.json: 100%
+2025-01-18 13:33:24,481 - INFO - Downloading JOHAN 04 DES.jpg-info.json: 100%
+2025-01-18 13:33:25,718 - INFO - Downloading 00486-1-SWP-P-PS2-1800 1-25 SET-2.800 WP (CUST.json: 100%
+2025-01-18 13:33:28,000 - INFO - Downloading 00473-SWP-P-PS2-4000 3-32 SET-4800 WP (PRICELIS.pdf: 100%
+2025-01-18 13:33:29,508 - INFO - Downloading mso18B8.tmp: 100%
+2025-01-18 13:33:30,731 - INFO - Downloading 00496-Project-Yalimo---Papua_Wasareak_Wamena_70.pdf: 100%
+2025-01-18 13:33:31,841 - INFO - Downloading 00473-1-SWP-P-PS2-4000 3-32 SET-4800 WP (CUST .json: 100%
+2025-01-18 13:33:32,955 - INFO - Downloading 00193-1-ACC-PV DISCONNECT (CUST PRICE-V)-12-24(1).json: 100%
+2025-01-18 13:33:36,486 - INFO - Downloading 00198-1-ACC-AKSESORIS HYBRID 5500 WP (CUST PRI(1).xlsx: 100%
+2025-01-18 13:33:38,205 - INFO - Downloading 00498-SWP-P-PS2-4000 5-25 SET- 6.000 WP (PRICEL.pdf: 100%
+2025-01-18 13:33:39,489 - INFO - Downloading 00474-4-SWP-P-PS2-4000 3-32 SET-(TANPA SOLAR P.json: 100%
+2025-01-18 13:33:40,307 - INFO - Downloading 00424-OFG-5.500 WP-10 KWH-LITH (CUST PRICE-V)-.json: 100%
+2025-01-18 13:33:41,794 - INFO - Downloading 00486-2-SWP-P-PS2-1800 1-25 SET-2.800 WP (CUST .pdf: 100%
+2025-01-18 13:33:43,163 - INFO - Downloading 008-EPD-SALES-12-24-VIVI-SURVEY PLTS BPK. JOHA.xlsx: 100%
+2025-01-18 13:33:44,464 - INFO - Downloading msoAAB.tmp: 100%
+2025-01-18 13:33:45,961 - INFO - Downloading msoCCDE.tmp-info.json: 100%
+2025-01-18 13:33:48,368 - INFO - Downloading mso12D0.tmp: 100%
+2025-01-18 13:33:51,679 - INFO - Downloading 00198-ACC-AKSESORIS HYBRID 5500 WP (CUST PRICE.xlsx: 100%
+2025-01-18 13:33:52,570 - INFO - Downloading VIVI-info.json: 100%
+2025-01-18 13:33:53,415 - INFO - Downloading 00198-1-ACC-AKSESORIS HYBRID 5500 WP (CUST PRI(1).json: 100%
+2025-01-18 13:33:54,357 - INFO - Downloading mso12D0.tmp-info.json: 100%
+2025-01-18 13:33:59,057 - INFO - Downloading 00198-1-ACC-AKSESORIS HYBRID 5500 WP (CUST PRI.xlsx: 100%
+2025-01-18 13:34:00,397 - INFO - Downloading 00486-1-SWP-P-PS2-1800 1-25 SET-1.800 WP (CUST.json: 100%
+2025-01-18 13:34:02,172 - INFO - Downloading 00498-2-SWP-P-PS2-4000 5-25 SET- 6.000 WP (CUST.pdf: 100%
+2025-01-18 13:34:04,032 - INFO - Downloading 00198-1-ACC-AKSESORIS HYBRID 5500 WP (CUST PRIC.pdf: 100%
+2025-01-18 13:34:05,689 - INFO - Downloading 00193-1-ACC-PV DISCONNECT (CUST PRICE-V)-12-24.xlsx: 100%
+2025-01-18 13:34:07,013 - INFO - Downloading msoB027.tmp: 100%
+2025-01-18 13:34:08,148 - INFO - Downloading YACOBSON 3.jpg: 100%
+2025-01-18 13:34:09,074 - INFO - Downloading msoB027.tmp-info.json: 100%
+2025-01-18 13:34:10,010 - INFO - Downloading 00198-1-ACC-AKSESORIS HYBRID 5500 WP (CUST PRI.json: 100%
+2025-01-18 13:34:11,092 - INFO - Downloading 00474-10-SWP-P-PS2-4000 3-32 SET-(TANPA SOLAR .json: 100%
+2025-01-18 13:34:12,061 - INFO - Downloading 00495-SWP-PS2 600 CS-F4-3 SET-1.600 WP (CUST P.json: 100%
+2025-01-18 13:34:14,837 - INFO - Downloading 00489-SWP-P-PS2-1800 8-7 SET-2.800 WP (PRICELI.xlsx: 100%
+2025-01-18 13:34:17,479 - INFO - Downloading 00486-1-SWP-P-PS2-1800 1-25 SET-1.800 WP (CUST.xlsx: 100%
+2025-01-18 13:34:19,122 - INFO - Downloading 00193-1-ACC-PV DISCONNECT (CUST PRICE-V)-12-24-.pdf: 100%
+2025-01-18 13:34:20,448 - INFO - Downloading 00473-SWP-P-PS2-4000 3-32 SET-4800 WP (PRICELI(1).json: 100%
+2025-01-18 13:34:30,282 - INFO - Downloading 00424-OFG-5.500 WP-10 KWH-LITH (CUST PRICE-V)-.xlsx: 100%
+2025-01-18 13:34:32,021 - INFO - Downloading 00495-SWP-PS2 600 CS-F4-3 SET-1.600 WP (CUST P.xlsx: 100%
+2025-01-18 13:34:33,481 - INFO - Downloading 00474-4-SWP-P-PS2-4000 3-32 SET-(TANPA SOLAR PA.pdf: 100%
+2025-01-18 13:34:34,396 - INFO - Downloading 00486-2-SWP-P-PS2-1800 1-25 SET-2.800 WP (CUST(1).json: 100%
+2025-01-18 13:34:35,234 - INFO - Downloading 008-EPD-SALES-12-24-VIVI-SURVEY PLTS BPK. JOHA.json: 100%
+2025-01-18 13:34:36,604 - INFO - Downloading 00473-SWP-P-PS2-4000 3-32 SET-4800 WP (PRICELIS(1).pdf: 100%
+2025-01-18 13:34:37,906 - INFO - Downloading JOHAN 04 DES.jpg: 100%
+2025-01-18 13:34:40,637 - INFO - Downloading 00474-10-SWP-P-PS2-4000 3-32 SET-(TANPA SOLAR .xlsx: 100%
+2025-01-18 13:34:41,690 - INFO - Downloading 00486-2-SWP-P-PS2-1800 1-25 SET-2.800 WP (CUST.json: 100%
+2025-01-18 13:34:42,694 - INFO - Downloading 00422-OFG-5.500 WP-BATTERYLESS (CUST PRICE-V)-.json: 100%
+2025-01-18 13:34:43,706 - INFO - Downloading msoAAB.tmp-info.json: 100%
+2025-01-18 13:34:45,249 - INFO - Downloading 00193-1-ACC-PV DISCONNECT (CUST PRICE-V)-12-24-(1).pdf: 100%
+2025-01-18 13:34:46,490 - INFO - Downloading 00496-Project-Yalimo---Papua_Wasareak_Wamena_7.json: 100%
+2025-01-18 13:34:48,896 - INFO - Downloading 00486-1-SWP-P-PS2-1800 1-25 SET-2.800 WP (CUST.xlsx: 100%
+2025-01-18 13:34:49,782 - INFO - Downloading Zoom.lnk: 100%
+2025-01-18 13:34:52,614 - INFO - Downloading 00486-2-SWP-P-PS2-1800 1-25 SET-2.800 WP (CUST.xlsx: 100%
+2025-01-18 13:34:54,288 - INFO - Downloading 00198-ACC-AKSESORIS HYBRID 5500 WP (CUST PRICE.json: 100%
+2025-01-18 13:34:55,083 - INFO - Downloading 00473-SWP-P-PS2-4000 3-32 SET-4800 WP (PRICELI.json: 100%
+2025-01-18 13:34:56,363 - INFO - Downloading 00489-SWP-P-PS2-1800 8-7 SET-2.800 WP (PRICELI.json: 100%
+2025-01-18 13:34:58,487 - INFO - Downloading 00486-2-SWP-P-PS2-1800 1-25 SET-2.800 WP (CUST(1).xlsx: 100%
+2025-01-18 13:35:01,313 - INFO - Downloading 00473-1-SWP-P-PS2-4000 3-32 SET-4800 WP (CUST .xlsx: 100%
+2025-01-18 13:35:02,350 - INFO - Downloading mso18B8.tmp-info.json: 100%
+2025-01-18 13:35:03,633 - INFO - Downloading 00486-2-SWP-P-PS2-1800 1-25 SET-2.800 WP (CUST(2).json: 100%
+2025-01-18 13:35:04,984 - INFO - Downloading msoCCDE.tmp: 100%
+2025-01-18 13:35:05,791 - INFO - Downloading Zoom.lnk-info.json: 100%
+2025-01-18 13:35:06,756 - INFO - Downloading 00198-1-ACC-AKSESORIS HYBRID 5500 WP (CUST PRI(2).json: 100%
+2025-01-18 13:35:08,470 - INFO - Downloading 00397-SWP-P-PS2-1800 5-12 SET-1.800 WP (PRICE L.pdf: 100%
+2025-01-18 13:35:09,301 - INFO - Downloading SALES.html: 100%
+2025-01-18 13:35:10,374 - INFO - Downloading 00395-SWP-P-PS2-200 3-9 SET-400 WP (PRICELIST-.json: 100%
+2025-01-18 13:35:11,233 - INFO - Downloading VIVI-info.json: 100%
+2025-01-18 13:35:12,393 - INFO - Downloading SALES-info.json: 100%
+2025-01-18 13:35:13,710 - INFO - Downloading 00397-SWP-P-PS2-1800 5-12 SET-1.800 WP (PRICE .json: 100%
+2025-01-18 13:35:16,356 - INFO - Downloading 00395-SWP-P-PS2-200 3-9 SET-400 WP (PRICELIST-.xlsx: 100%
+2025-01-18 13:35:17,420 - INFO - Downloading Untitled spreadsheet.xlsx: 100%
+2025-01-18 13:35:20,062 - INFO - Downloading OFG-479.600 WP-320 KWH-LITH (TANPA PASANG) (CU.xlsx: 100%
+2025-01-18 13:35:21,514 - INFO - Downloading OFG-479.600 WP-320 KWH-LITH (TANPA PASANG) (CU.json: 100%
+2025-01-18 13:35:22,312 - INFO - Downloading 00394-SWP-P-PS2-1800 1-25 SET-1800 WP (PRICELI.json: 100%
+2025-01-18 13:35:24,127 - INFO - Downloading DATA BASE CUSTOMER VIVI.xlsx: 100%
+2025-01-18 13:35:25,359 - INFO - Downloading DATA BASE CUSTOMER VIVI-info.json: 100%
+2025-01-18 13:35:27,513 - INFO - Downloading 00394-SWP-P-PS2-1800 1-25 SET-1800 WP (PRICELI.xlsx: 100%
+2025-01-18 13:35:28,903 - INFO - Downloading 00411-OFG-2.000 WP-2 KWH-VRLA (CUST PRICE-V)-1.json: 100%
+2025-01-18 13:35:30,390 - INFO - Downloading 00411-OFG-2.000 WP-2 KWH-VRLA (CUST PRICE-V)-1.xlsx: 100%
+2025-01-18 13:35:31,327 - INFO - Downloading Untitled spreadsheet-info.json: 100%
+2025-01-18 13:35:31,330 - INFO - Download completed for rohmat@atonergi.com
+2025-01-18 13:35:31,330 - INFO - Starting extraction of temp\rohmat@atonergi.com_drive.zip
+2025-01-18 13:35:32,053 - INFO - Extraction completed
+2025-01-18 13:35:32,053 - ERROR - Migration failed: DriveManager.upload_drive() takes 2 positional arguments but 3 were given
