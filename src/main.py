@@ -1,4 +1,5 @@
 from drive_manager import DriveManager
+from ui import main as ui_main
 import logging
 import shutil
 import os
@@ -73,4 +74,4 @@ def main():
     #         cleanup()
 
 if __name__ == "__main__":
-    main()
+    ui_main()
