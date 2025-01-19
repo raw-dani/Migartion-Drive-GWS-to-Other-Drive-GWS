@@ -13,15 +13,15 @@ def cleanup():
 def main():
     # List of user emails to migrate
     users = [
-        'rohmat@domain.com'
+        'sales03@atonergi.com'
         # Add more users as needed
     ]
 
     # Source and destination account mappings
     migrations = [
         {
-            'source_email': 'rohmat@domain.com',
-            'destination_email': 'dm01@domain.com'
+            'source_email': 'sales03@atonergi.com',
+            'destination_email': 'sales03@rejaton.com'
         }
         # ,
         # {

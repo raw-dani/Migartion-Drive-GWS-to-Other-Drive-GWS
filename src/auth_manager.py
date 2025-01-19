@@ -19,10 +19,13 @@ class AuthManager:
                 creds.refresh(Request())
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(
-                    credentials_file, CONFIG['SCOPES'])
+                    credentials_file, 
+                    CONFIG['SCOPES'],
+                    redirect_uri='urn:ietf:wg:oauth:2.0:oob'
+                )
                 creds = flow.run_local_server(port=0)
                 
             with open(token_pickle, 'wb') as token:
                 pickle.dump(creds, token)
                 
-        return build('drive', 'v3', credentials=creds)
+        return build('drive', 'v3', credentials=creds, cache_discovery=False)
