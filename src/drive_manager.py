@@ -1,8 +1,11 @@
 from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
 from tenacity import retry, stop_after_attempt, wait_exponential, RetryError
+from socket import timeout as SocketTimeout
+import ssl
 import os
 import io
 import zipfile
+import json
 import logging
 import socket
 import googleapiclient.errors
@@ -25,6 +28,41 @@ class DriveManager:
         self.max_retries = 5
         self.current_file_count = 0
         self.total_files = 0
+        self.metadata = {}
+        self.metadata_path = os.path.join(CONFIG['TEMP_DIR'], 'file_metadata.json')
+        self._init_metadata()
+        self.timeout = 300  # 5 minutes timeout
+        ssl._create_default_https_context = ssl._create_unverified_context
+
+    @retry(
+        stop=stop_after_attempt(5),
+        wait=wait_exponential(multiplier=2, min=4, max=60),
+        reraise=True
+    )
+    def _make_request(self, request):
+        try:
+            return request.execute(num_retries=5)
+        except Exception as e:
+            logging.warning(f"Request failed, retrying... {str(e)}")
+            raise
+
+
+    def _init_metadata(self):
+        """Initialize metadata storage"""
+        os.makedirs(CONFIG['TEMP_DIR'], exist_ok=True)
+        
+        try:
+            with open(self.metadata_path, 'r') as f:
+                self.metadata = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            self.metadata = {}
+            with open(self.metadata_path, 'w') as f:
+                json.dump(self.metadata, f)
+
+    def _save_metadata(self):
+        """Save current metadata to file"""
+        with open(self.metadata_path, 'w') as f:
+            json.dump(self.metadata, f)
 
     def setup_logging(self):
         log_file = os.path.join(
@@ -99,11 +137,13 @@ class DriveManager:
         zip_path = os.path.join(CONFIG['TEMP_DIR'], f"{user_email}_shared.zip")
         
         with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-            results = self.source_service.files().list(
-                q="sharedWithMe=true and trashed=false",
-                fields="files(id, name, mimeType, parents)",
-                pageSize=1000
-            ).execute()
+            results = self._make_request(
+                self.source_service.files().list(
+                    q="sharedWithMe=true and trashed=false",
+                    fields="files(id, name, mimeType, parents)",
+                    pageSize=1000
+                )
+            )
             
             for item in results.get('files', []):
                 self._handle_shared_item(item, zip_file)
@@ -166,6 +206,9 @@ class DriveManager:
                     _, done = downloader.next_chunk()
 
                 file_path = os.path.join(folder_path, self._clean_filename(item['name']))
+                self.metadata[file_path] = item['id']
+                self._save_metadata()
+
                 zip_file.writestr(file_path, fh.getvalue())
                 logging.info(f"Downloaded: {item['name']}")
         except Exception as e:
@@ -209,7 +252,7 @@ class DriveManager:
         logging.info("Extraction completed")
         return extract_path
 
-    def upload_drive(self, extract_path, destination_email):
+    def upload_drive(self, extract_path, destination_email, source_domain, target_domain):
         logging.info(f"Starting upload process to {destination_email}")
         try:
             resume_file = os.path.join(CONFIG['TEMP_DIR'], f'resume_{destination_email}.txt')
@@ -222,13 +265,149 @@ class DriveManager:
             self.total_files = sum([len(files) for _, _, files in os.walk(extract_path)])
             self.current_file_count = len(uploaded_files)
 
-            result = self._upload_folder(extract_path, 'root', uploaded_files, resume_file)
+            result = self._upload_folder(extract_path, 'root', uploaded_files, resume_file, source_domain, target_domain)
             return result
         except Exception as e:
             logging.error(f"Upload failed: {str(e)}")
             raise
+        
+    def list_shared_drives(self, user_email):
+        """Get list of shared drives"""
+        try:
+            results = self.source_service.drives().list(fields="drives(id, name)").execute()
+            drives = results.get('drives', [])
+            if drives:
+                logging.info(f"Found {len(drives)} shared drives")
+            return drives
+        except Exception as e:
+            logging.error(f"Error listing shared drives: {str(e)}")
+            return []
 
-    def _upload_folder(self, local_path, parent_id, uploaded_files, resume_file):
+    def upload_shared_drive(self, extract_path, destination_email):
+        """Upload shared drive content to destination"""
+        logging.info(f"Starting shared drive upload to {destination_email}")
+        try:
+            # Create new shared drive in destination
+            drive_metadata = {
+                'name': f"Migrated Shared Drive - {datetime.now().strftime('%Y%m%d')}"
+            }
+            new_drive = self.dest_service.drives().create(body=drive_metadata).execute()
+            
+            # Upload content to new shared drive
+            self._upload_folder(extract_path, new_drive['id'], set(), 
+                os.path.join(CONFIG['TEMP_DIR'], f'resume_shared_{destination_email}.txt'))
+                
+            logging.info("Shared drive upload completed")
+            return new_drive['id']
+        except Exception as e:
+            logging.error(f"Shared drive upload failed: {str(e)}")
+            raise
+
+    def upload_shared_with_me(self, extract_path, destination_email):
+        """Upload shared files to destination"""
+        logging.info(f"Starting shared files upload to {destination_email}")
+        try:
+            # Create shared folder in destination
+            folder_metadata = {
+                'name': f"Migrated Shared Files - {datetime.now().strftime('%Y%m%d')}",
+                'mimeType': 'application/vnd.google-apps.folder'
+            }
+            shared_folder = self.dest_service.files().create(
+                body=folder_metadata,
+                fields='id'
+            ).execute()
+            
+            # Upload shared content
+            self._upload_folder(extract_path, shared_folder['id'], set(),
+                os.path.join(CONFIG['TEMP_DIR'], f'resume_shared_files_{destination_email}.txt'))
+                
+            logging.info("Shared files upload completed")
+            return shared_folder['id']
+        except Exception as e:
+            logging.error(f"Shared files upload failed: {str(e)}")
+            raise
+
+    def _get_file_permissions(self, file_id):
+        """Get sharing permissions of a file/folder"""
+        try:
+            permissions = self.source_service.permissions().list(
+                fileId=file_id,
+                fields='permissions(emailAddress,role,type,domain)'
+            ).execute()
+            return permissions.get('permissions', [])
+        except Exception as e:
+            logging.error(f"Error getting permissions for file {file_id}: {str(e)}")
+            return []
+
+    def _map_email_domain(self, source_email, source_domain, target_domain):
+        """Map email from source domain to target domain"""
+        username = source_email.split('@')[0]
+        return f"{username}@{target_domain}"
+
+    def _migrate_sharing_permissions(self, source_file_id, dest_file_id, source_domain, target_domain):
+        """Migrate sharing permissions from source to destination"""
+        permissions = self._get_file_permissions(source_file_id)
+        
+        for permission in permissions:
+            try:
+                if permission.get('emailAddress'):
+                    if source_domain in permission['emailAddress']:
+                        new_email = self._map_email_domain(
+                            permission['emailAddress'],
+                            source_domain,
+                            target_domain
+                        )
+                        
+                        new_permission = {
+                            'type': 'user',
+                            'role': permission['role'],
+                            'emailAddress': new_email
+                        }
+                        
+                        self.dest_service.permissions().create(
+                            fileId=dest_file_id,
+                            body=new_permission,
+                            sendNotificationEmail=False
+                        ).execute()
+                        logging.info(f"Shared {dest_file_id} with {new_email}")
+                        
+                elif permission.get('domain') == source_domain:
+                    new_permission = {
+                        'type': 'domain',
+                        'role': permission['role'],
+                        'domain': target_domain
+                    }
+                    
+                    self.dest_service.permissions().create(
+                        fileId=dest_file_id,
+                        body=new_permission,
+                        sendNotificationEmail=False
+                    ).execute()
+                    logging.info(f"Shared {dest_file_id} with domain {target_domain}")
+                    
+            except Exception as e:
+                logging.error(f"Error migrating permission: {str(e)}")
+
+    def _store_file_mapping(self, source_id, dest_id):
+        """Store mapping of source and destination file IDs"""
+        if not hasattr(self, 'file_mapping'):
+            self.file_mapping = {}
+        self.file_mapping[source_id] = dest_id
+
+    def _get_source_file_id(self, file_path):
+        """Get source file ID from stored metadata"""
+        metadata_path = os.path.join(CONFIG['TEMP_DIR'], 'file_metadata.json')
+        try:
+            if os.path.exists(metadata_path):
+                with open(metadata_path, 'r') as f:
+                    metadata = json.load(f)
+                    return metadata.get(file_path)
+        except Exception as e:
+            logging.error(f"Error getting source file ID: {str(e)}")
+        return None
+
+
+    def _upload_folder(self, local_path, parent_id, uploaded_files, resume_file, source_domain=None, target_domain=None):
         for item in os.listdir(local_path):
             item_path = os.path.join(local_path, item)
             
@@ -255,6 +434,11 @@ class DriveManager:
                         body=folder_metadata,
                         fields='id'
                     ))
+                    # Migrate folder permissions
+                    source_id = self._get_source_file_id(item_path)
+                    if source_id:
+                        self._migrate_sharing_permissions(source_id, folder['id'], source_domain, target_domain)
+                
                     self._upload_folder(item_path, folder['id'], uploaded_files, resume_file)
                 else:
                     file_metadata = {
@@ -267,6 +451,11 @@ class DriveManager:
                         media_body=media,
                         fields='id'
                     ))
+                    # Migrate file permissions
+                    source_id = self._get_source_file_id(item_path)
+                    if source_id:
+                        self._migrate_sharing_permissions(source_id, uploaded_file['id'], source_domain, target_domain)
+                
                     self.current_file_count += 1
 
                 with open(resume_file, 'a') as f:
