@@ -8,10 +8,10 @@ from config import CONFIG
 
 class AuthManager:
     @staticmethod
-    def get_drive_service(credentials_file, token_pickle):
+    def get_drive_service(credentials_file, token_file):
         creds = None
-        if os.path.exists(token_pickle):
-            with open(token_pickle, 'rb') as token:
+        if os.path.exists(token_file):
+            with open(token_file, 'rb') as token:
                 creds = pickle.load(token)
                 
         if not creds or not creds.valid:
@@ -19,13 +19,10 @@ class AuthManager:
                 creds.refresh(Request())
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(
-                    credentials_file, 
-                    CONFIG['SCOPES'],
-                    redirect_uri='urn:ietf:wg:oauth:2.0:oob'
-                )
+                    credentials_file, CONFIG['SCOPES'])
                 creds = flow.run_local_server(port=0)
                 
-            with open(token_pickle, 'wb') as token:
+            with open(token_file, 'wb') as token:
                 pickle.dump(creds, token)
-                
-        return build('drive', 'v3', credentials=creds, cache_discovery=False)
+
+        return build('drive', 'v3', credentials=creds)
