@@ -57,12 +57,28 @@ class MigrationUI:
         self.button_frame = ttk.Frame(self.main_frame)
         self.button_frame.grid(row=7, column=0, columnspan=3, pady=10)
 
-        # Style configuration
+        # Style configuration with improved visibility
         style = ttk.Style()
-        style.configure('Start.TButton', background='green', foreground='white')
-        style.configure('Stop.TButton', background='red', foreground='white')
+        style.configure('Start.TButton', 
+            background='#4CAF50',  # Bright green
+            foreground='white',
+            font=('Arial', 10, 'bold')
+        )
+        style.configure('Stop.TButton', 
+            background='#F44336',  # Bright red
+            foreground='white',
+            font=('Arial', 10, 'bold')
+        )
+        style.map('Start.TButton',
+            background=[('active', '#45a049')],  # Darker green on hover
+            foreground=[('active', 'white')]
+        )
+        style.map('Stop.TButton',
+            background=[('active', '#d32f2f')],  # Darker red on hover
+            foreground=[('active', 'white')]
+        )
 
-        # Start button with green theme
+        # Start button with enhanced visibility
         self.start_button = ttk.Button(
             self.button_frame, 
             text="Start Migration", 
@@ -72,7 +88,7 @@ class MigrationUI:
         )
         self.start_button.grid(row=0, column=0, padx=20)
 
-        # Stop button with red theme
+        # Stop button with enhanced visibility
         self.stop_button = ttk.Button(
             self.button_frame, 
             text="Stop Migration", 
@@ -104,8 +120,11 @@ class MigrationUI:
 
     def update_transfer_info(self, file_name, transfer_type, current_count, total_count):
         """Update transfer information in UI"""
+        status_text = transfer_type
+        if transfer_type == "Downloading" and file_name.endswith('.shortcut'):
+            status_text += " (Shortcut)"
         self.current_file_label.config(text=f"Current File: {file_name}")
-        self.transfer_type_label.config(text=f"Status: {transfer_type}")
+        self.transfer_type_label.config(text=f"Status: {status_text}")
         self.file_count_label.config(text=f"Files: {current_count}/{total_count}")
         self.root.update()
 
