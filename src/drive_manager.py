@@ -161,6 +161,63 @@ class DriveManager:
         except Exception as e:
             logging.error(f"Error handling shared item {item['name']}: {str(e)}")
 
+    def _handle_shortcut(self, item, folder_path, zip_file):
+        """Handle Google Drive shortcuts and owned files within shortcut folders"""
+        try:
+            target_id = item['shortcutDetails']['targetId']
+            
+            # Get target folder contents if it's a folder
+            results = self.source_service.files().list(
+                q=f"'{target_id}' in parents and trashed=false",
+                fields="files(id, name, mimeType, owners)",
+                pageSize=1000
+            ).execute()
+            
+            # Store shortcut mapping for recreation
+            shortcut_info = {
+                'sourceId': item['id'],
+                'targetId': target_id,
+                'path': folder_path,
+                'name': item['name']
+            }
+            if not hasattr(self, 'shortcuts'):
+                self.shortcuts = []
+            self.shortcuts.append(shortcut_info)
+            
+            # Process files in shortcut folder
+            for file in results.get('files', []):
+                if file['owners'][0]['emailAddress'] == self.source_email:
+                    if file['mimeType'] == 'application/vnd.google-apps.folder':
+                        new_path = os.path.join(folder_path, self._clean_filename(file['name']))
+                        self._download_folder(file['id'], new_path, zip_file)
+                    else:
+                        self._download_file(file, folder_path, zip_file)
+                        
+        except Exception as e:
+            logging.error(f"Error processing shortcut folder contents: {str(e)}")
+
+    def _recreate_shortcuts(self, dest_email):
+        """Recreate shortcuts in destination drive"""
+        for shortcut in self.shortcuts:
+            try:
+                shortcut_metadata = {
+                    'name': shortcut['name'],
+                    'mimeType': 'application/vnd.google-apps.shortcut',
+                    'shortcutDetails': {
+                        'targetId': shortcut['targetId']
+                    },
+                    'parents': [self._get_or_create_folder(shortcut['path'], dest_email)]
+                }
+                
+                self.dest_service.files().create(
+                    body=shortcut_metadata,
+                    fields='id'
+                ).execute()
+                
+                logging.info(f"Recreated shortcut: {shortcut['name']}")
+                
+            except Exception as e:
+                logging.error(f"Error recreating shortcut {shortcut['name']}: {str(e)}")
 
     def _download_folder(self, folder_id, folder_path, zip_file):
         try:
@@ -195,7 +252,12 @@ class DriveManager:
 
     def _download_file(self, item, folder_path, zip_file):
         try:
-            if item['mimeType'].startswith('application/vnd.google-apps'):
+            # Add shortcut handling at the start
+            if item['mimeType'] == 'application/vnd.google-apps.shortcut':
+                self._handle_shortcut(item, folder_path, zip_file)
+                return
+            # Existing workspace file handling    
+            elif item['mimeType'].startswith('application/vnd.google-apps'):
                 self._handle_workspace_file(item, folder_path, zip_file)
             else:
                 request = self.source_service.files().get_media(fileId=item['id'])
