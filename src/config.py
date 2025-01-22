@@ -33,6 +33,8 @@ CONFIG = {
         # Video
         '.mp4': 'video/mp4',
         '.avi': 'video/x-msvideo',
+        # shortcut
+        'application/vnd.google-apps.shortcut': 'application/vnd.google-apps.shortcut',
         # Archives
         '.zip': 'application/zip',
         '.rar': 'application/x-rar-compressed'
