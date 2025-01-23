@@ -61,21 +61,21 @@ class MigrationUI:
         style = ttk.Style()
         style.configure('Start.TButton', 
             background='#4CAF50',  # Bright green
-            foreground='white',
+            foreground='black',
             font=('Arial', 10, 'bold')
         )
         style.configure('Stop.TButton', 
             background='#F44336',  # Bright red
-            foreground='white',
+            foreground='grey',
             font=('Arial', 10, 'bold')
         )
         style.map('Start.TButton',
             background=[('active', '#45a049')],  # Darker green on hover
-            foreground=[('active', 'white')]
+            foreground=[('active', 'Green')]
         )
         style.map('Stop.TButton',
             background=[('active', '#d32f2f')],  # Darker red on hover
-            foreground=[('active', 'white')]
+            foreground=[('active', 'Red')]
         )
 
         # Start button with enhanced visibility
