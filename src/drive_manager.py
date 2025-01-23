@@ -132,7 +132,7 @@ class DriveManager:
                 raise
     
     def download_shared_with_me(self, user_email):
-        """Download files shared with the user"""
+        """Download files shared with the user that are owned by source"""
         logging.info(f"Starting Shared with me download for {user_email}")
         zip_path = os.path.join(CONFIG['TEMP_DIR'], f"{user_email}_shared.zip")
         
@@ -140,13 +140,15 @@ class DriveManager:
             results = self._make_request(
                 self.source_service.files().list(
                     q="sharedWithMe=true and trashed=false",
-                    fields="files(id, name, mimeType, parents)",
+                    fields="files(id, name, mimeType, parents, owners)",
                     pageSize=1000
                 )
             )
             
             for item in results.get('files', []):
-                self._handle_shared_item(item, zip_file)
+                # Check if the file is owned by source user
+                if item['owners'][0]['emailAddress'] == user_email:
+                    self._handle_shared_item(item, zip_file)
                 
         logging.info(f"Completed downloading shared files for {user_email}")
         return zip_path
