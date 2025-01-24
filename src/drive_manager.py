@@ -308,11 +308,20 @@ class DriveManager:
     def extract_drive(self, zip_path):
         logging.info(f"Starting extraction of {zip_path}")
         extract_path = os.path.join(CONFIG['TEMP_DIR'], 'extracted')
-        os.makedirs(extract_path, exist_ok=True)
         
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            zip_ref.extractall(extract_path)
-            
+            for file_info in zip_ref.infolist():
+                try:
+                    target_path = os.path.join(extract_path, file_info.filename)
+                    # Create parent directories if they don't exist
+                    os.makedirs(os.path.dirname(target_path), exist_ok=True)
+                    # Extract the file
+                    zip_ref.extract(file_info, extract_path)
+                    logging.info(f"Extracted: {file_info.filename}")
+                except Exception as e:
+                    logging.error(f"Error extracting {file_info.filename}: {str(e)}")
+                    continue
+                
         logging.info("Extraction completed")
         return extract_path
 
@@ -473,63 +482,70 @@ class DriveManager:
 
     def _upload_folder(self, local_path, parent_id, uploaded_files, resume_file, source_domain=None, target_domain=None):
         for item in os.listdir(local_path):
-            item_path = os.path.join(local_path, item)
-            
-            if item_path in uploaded_files:
-                logging.info(f"Skipping already uploaded: {item}")
-                continue
-
             try:
+                # Clean the filename before constructing paths
+                cleaned_item = self._clean_filename(item)
+                item_path = os.path.join(local_path, cleaned_item)
+                original_path = os.path.join(local_path, item)
+                
+                if original_path in uploaded_files:
+                    logging.info(f"Skipping already uploaded: {item}")
+                    continue
+
                 if hasattr(self, 'ui'):
                     self.ui.update_transfer_info(
-                        item,
+                        cleaned_item,
                         "Uploading",
                         self.current_file_count,
                         self.total_files
                     )
 
-                if os.path.isdir(item_path):
-                    folder_metadata = {
-                        'name': item,
-                        'mimeType': 'application/vnd.google-apps.folder',
-                        'parents': [parent_id]
-                    }
-                    folder = self._retry_upload(self.dest_service.files().create(
-                        body=folder_metadata,
-                        fields='id'
-                    ))
-                    # Migrate folder permissions
-                    source_id = self._get_source_file_id(item_path)
-                    if source_id:
-                        self._migrate_sharing_permissions(source_id, folder['id'], source_domain, target_domain)
-                
-                    self._upload_folder(item_path, folder['id'], uploaded_files, resume_file)
-                else:
-                    file_metadata = {
-                        'name': item,
-                        'parents': [parent_id]
-                    }
-                    media = MediaFileUpload(item_path, resumable=True)
-                    self._retry_upload(self.dest_service.files().create(
-                        body=file_metadata,
-                        media_body=media,
-                        fields='id'
-                    ))
-                    # Migrate file permissions
-                    source_id = self._get_source_file_id(item_path)
-                    if source_id:
-                        self._migrate_sharing_permissions(source_id, uploaded_file['id'], source_domain, target_domain)
-                
-                    self.current_file_count += 1
+                if os.path.exists(item_path):
+                    if os.path.isdir(item_path):
+                        folder_metadata = {
+                            'name': cleaned_item,
+                            'mimeType': 'application/vnd.google-apps.folder',
+                            'parents': [parent_id]
+                        }
+                        folder = self._retry_upload(self.dest_service.files().create(
+                            body=folder_metadata,
+                            fields='id'
+                        ))
+                        
+                        source_id = self._get_source_file_id(item_path)
+                        if source_id:
+                            self._migrate_sharing_permissions(source_id, folder['id'], source_domain, target_domain)
+                    
+                        self._upload_folder(item_path, folder['id'], uploaded_files, resume_file)
+                    else:
+                        file_metadata = {
+                            'name': cleaned_item,
+                            'parents': [parent_id]
+                        }
+                        media = MediaFileUpload(item_path, resumable=True)
+                        uploaded_file = self._retry_upload(self.dest_service.files().create(
+                            body=file_metadata,
+                            media_body=media,
+                            fields='id'
+                        ))
+                        
+                        source_id = self._get_source_file_id(item_path)
+                        if source_id:
+                            self._migrate_sharing_permissions(source_id, uploaded_file['id'], source_domain, target_domain)
+                    
+                        self.current_file_count += 1
 
-                with open(resume_file, 'a') as f:
-                    f.write(f"{item_path}\n")
-                uploaded_files.add(item_path)
-                logging.info(f"Uploaded: {item}")
+                        with open(resume_file, 'a') as f:
+                            f.write(f"{original_path}\n")
+                        uploaded_files.add(original_path)
+                        logging.info(f"Uploaded: {cleaned_item}")
+                else:
+                    logging.warning(f"File not found, skipping: {item_path}")
 
             except Exception as e:
                 logging.error(f"Error uploading {item}: {str(e)}")
                 raise
+
 
     @retry(
         stop=stop_after_attempt(5),
@@ -551,10 +567,31 @@ class DriveManager:
                 self.retry_count = 0
 
     def _clean_filename(self, filename):
+        # Maximum length for Windows paths
+        MAX_LENGTH = 240
+        
+        # Clean invalid characters
         invalid_chars = '<>:"/\\|?*'
+        cleaned_name = filename.strip()
         for char in invalid_chars:
-            filename = filename.replace(char, '_')
-        return filename
+            cleaned_name = cleaned_name.replace(char, '_')
+        
+        # Handle spaces and dots
+        cleaned_name = ' '.join(cleaned_name.split())
+        cleaned_name = cleaned_name.rstrip('.')
+        
+        # Get file extension
+        name_parts = cleaned_name.rsplit('.', 1)
+        name = name_parts[0]
+        extension = f".{name_parts[1]}" if len(name_parts) > 1 else ""
+        
+        # Truncate if too long while preserving extension
+        if len(cleaned_name) > MAX_LENGTH:
+            max_name_length = MAX_LENGTH - len(extension)
+            name = name[:max_name_length]
+            cleaned_name = name + extension
+        
+        return cleaned_name
 
     def _get_or_create_folder(self, folder_path, destination_email):
         if folder_path == '.':
