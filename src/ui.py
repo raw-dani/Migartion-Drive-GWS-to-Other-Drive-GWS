@@ -160,29 +160,41 @@ class MigrationUI:
             self.stop_button.state(['!disabled'])
             drive_manager = DriveManager()
             drive_manager.set_ui(self)
-            self.update_status(f"Starting migration from {source_email} to {dest_email}")
             
-            zip_path = None
+            # Check latest log for completed downloads
+            log_dir = CONFIG['LOG_DIR']
+            latest_log = max([os.path.join(log_dir, f) for f in os.listdir(log_dir)], key=os.path.getctime)
+            zip_path = os.path.join(CONFIG['TEMP_DIR'], f"{source_email}_drive.zip")
             
-            if self.my_drive_var.get():
-                self.update_status("Migrating My Drive...")
-                zip_path = drive_manager.download_drive(source_email)
+            with open(latest_log, 'r') as f:
+                log_content = f.read()
                 
-            if self.shared_drive_var.get():
-                self.update_status("Checking Shared Drives...")
-                shared_drives = drive_manager.list_shared_drives(source_email)
-                if not shared_drives:
-                    self.update_status("No shared drives found, skipping...")
-                else:
-                    zip_path = drive_manager.download_shared_drive(source_email)                
+            if "Completed downloading" in log_content and os.path.exists(zip_path):
+                self.update_status("Found previous download, skipping download phase...")
+            else:
+                self.update_status(f"Starting migration from {source_email} to {dest_email}")
+                
+                if self.my_drive_var.get():
+                    self.update_status("Migrating My Drive...")
+                    zip_path = drive_manager.download_drive(source_email)
                     
-            if self.shared_with_me_var.get():
-                self.update_status("Migrating Shared Files...")
-                shared_files_zip_path = drive_manager.download_shared_with_me(source_email)
-                if not zip_path:
-                    zip_path = shared_files_zip_path            
+                if self.shared_drive_var.get():
+                    self.update_status("Checking Shared Drives...")
+                    shared_drives = drive_manager.list_shared_drives(source_email)
+                    if not shared_drives:
+                        self.update_status("No shared drives found, skipping...")
+                    else:
+                        shared_zip_path = drive_manager.download_shared_drive(source_email)
+                        if not zip_path:
+                            zip_path = shared_zip_path
+                            
+                if self.shared_with_me_var.get():
+                    self.update_status("Migrating Shared Files...")
+                    shared_files_zip_path = drive_manager.download_shared_with_me(source_email)
+                    if not zip_path:
+                        zip_path = shared_files_zip_path
             
-            if zip_path:
+            if zip_path and self.migration_running:
                 self.update_status("Extracting files...")
                 extract_path = drive_manager.extract_drive(zip_path)
                 
@@ -192,16 +204,13 @@ class MigrationUI:
                 self.update_status("Migration completed successfully!")
             else:
                 self.update_status("No files selected for migration")
-
-            if not self.migration_running:
-                return
                 
         except Exception as e:
             self.update_status(f"Error: {str(e)}")
         finally:
             self.progress.stop()
             self.start_button.state(['!disabled'])
-
+            self.stop_button.state(['disabled'])
 
 def main():
     root = tk.Tk()
