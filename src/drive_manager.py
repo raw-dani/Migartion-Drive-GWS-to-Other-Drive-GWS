@@ -1,6 +1,7 @@
 from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
 from tenacity import retry, stop_after_attempt, wait_exponential, RetryError
 from socket import timeout as SocketTimeout
+import sys
 import ssl
 import os
 import io
@@ -73,8 +74,8 @@ class DriveManager:
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
             handlers=[
-                logging.FileHandler(log_file),
-                logging.StreamHandler()
+                logging.FileHandler(log_file, encoding='utf-8'),
+                logging.StreamHandler(sys.stdout)
             ]
         )
 
@@ -101,6 +102,25 @@ class DriveManager:
             return 0
 
     def download_drive(self, user_email):
+        # Check existing download
+        existing_zip = self.check_existing_download(user_email)
+        if existing_zip:
+            return existing_zip
+
+        # Check last log for completed download
+        log_files = sorted([f for f in os.listdir(CONFIG['LOG_DIR']) if f.endswith('.log')], reverse=True)
+        
+        if log_files:
+            with open(os.path.join(CONFIG['LOG_DIR'], log_files[0]), 'r', encoding='utf-8', errors='replace') as log:
+                last_log = log.read()
+                completion_message = f"Download completed for {user_email}"
+                if completion_message in last_log:
+                    logging.info(f"Previous download detected for {user_email}, skipping download process")
+                    zip_path = os.path.join(CONFIG['TEMP_DIR'], f"{user_email}_drive.zip")
+                    if os.path.exists(zip_path):
+                        return zip_path
+
+        # Proceed with normal download if no matching completed download found
         logging.info(f"Starting download for {user_email}")
         self.total_files = self.count_total_files()
         self.current_file_count = 0
@@ -109,7 +129,7 @@ class DriveManager:
         
         with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zip_file:
             self._download_folder('root', '', zip_file)
-            
+                
         logging.info(f"Download completed for {user_email}")
         return zip_path
 
@@ -325,14 +345,27 @@ class DriveManager:
         logging.info("Extraction completed")
         return extract_path
 
+    def check_existing_download(self, user_email):
+        """Check if download already exists for the user"""
+        zip_path = os.path.join(CONFIG['TEMP_DIR'], f"{user_email}_drive.zip")
+        if os.path.exists(zip_path):
+            logging.info(f"Found existing download for {user_email}")
+            return zip_path
+        return None
+    
     def upload_drive(self, extract_path, destination_email, source_domain, target_domain):
         logging.info(f"Starting upload process to {destination_email}")
         try:
             resume_file = os.path.join(CONFIG['TEMP_DIR'], f'resume_{destination_email}.txt')
             uploaded_files = set()
+            
             if os.path.exists(resume_file):
-                with open(resume_file, 'r') as f:
-                    uploaded_files = set(f.read().splitlines())
+                try:
+                    with open(resume_file, 'r', encoding='utf-8', errors='replace') as f:
+                        uploaded_files = set(f.read().splitlines())
+                except Exception as e:
+                    logging.warning(f"Resume file read error, starting fresh: {str(e)}")
+                    uploaded_files = set()
 
             # Count total files for upload
             self.total_files = sum([len(files) for _, _, files in os.walk(extract_path)])
@@ -481,6 +514,15 @@ class DriveManager:
 
 
     def _upload_folder(self, local_path, parent_id, uploaded_files, resume_file, source_domain=None, target_domain=None):
+        # Initialize uploaded_files from resume file with encoding handling
+        if os.path.exists(resume_file):
+            try:
+                with open(resume_file, 'r', encoding='utf-8', errors='replace') as f:
+                    uploaded_files = set(f.read().splitlines())
+            except Exception as e:
+                logging.warning(f"Resume file read error, starting fresh: {str(e)}")
+                uploaded_files = set()
+
         for item in os.listdir(local_path):
             try:
                 # Clean the filename before constructing paths
@@ -516,7 +558,7 @@ class DriveManager:
                         if source_id:
                             self._migrate_sharing_permissions(source_id, folder['id'], source_domain, target_domain)
                     
-                        self._upload_folder(item_path, folder['id'], uploaded_files, resume_file)
+                        self._upload_folder(item_path, folder['id'], uploaded_files, resume_file, source_domain, target_domain)
                     else:
                         file_metadata = {
                             'name': cleaned_item,
@@ -535,16 +577,26 @@ class DriveManager:
                     
                         self.current_file_count += 1
 
-                        with open(resume_file, 'a') as f:
-                            f.write(f"{original_path}\n")
-                        uploaded_files.add(original_path)
-                        logging.info(f"Uploaded: {cleaned_item}")
+                        try:
+                            with open(resume_file, 'a', encoding='utf-8', errors='replace') as f:
+                                f.write(f"{original_path}\n")
+                            uploaded_files.add(original_path)
+                            logging.info(f"Uploaded: {cleaned_item}")
+                        except Exception as e:
+                            sanitized_path = original_path.encode('ascii', 'ignore').decode('ascii')
+                            with open(resume_file, 'a', encoding='utf-8', errors='replace') as f:
+                                f.write(f"{sanitized_path}\n")
+                            uploaded_files.add(sanitized_path)
+                            logging.info(f"Uploaded (sanitized): {cleaned_item}")
                 else:
                     logging.warning(f"File not found, skipping: {item_path}")
 
             except Exception as e:
                 logging.error(f"Error uploading {item}: {str(e)}")
-                raise
+                continue  # Continue with next file instead of raising exception
+
+        return True
+
 
 
     @retry(
@@ -626,3 +678,4 @@ class DriveManager:
                 parent_id = folder['id']
         
         return parent_id
+    
